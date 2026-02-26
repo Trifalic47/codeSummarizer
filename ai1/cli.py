@@ -2,9 +2,12 @@ import argparse
 import ai1.commands.scan as scan
 
 
-def cmd(command, path=None):
+def cmd(command, path=None, tree=False):
     if command == "scan":
-        scan.scan(path)
+        if tree:
+            scan.scan(path, tree=True)
+        else:
+            scan.scan(path)
     else:
         print("Working")
 

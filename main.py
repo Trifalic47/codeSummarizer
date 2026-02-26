@@ -18,10 +18,17 @@ if __name__ == "__main__":
         type=str,
         help="Enter the path to scan",
     )
+    parser.add_argument(
+        "-t",
+        "--tree",
+        action="store_true",
+        help="Choose if you want to show the tree of the files",
+    )
 
     # Parse ONLY ONCE
     args = parser.parse_args()
 
+    tree = args.tree
     command = args.command
     path = args.path
 
@@ -29,6 +36,9 @@ if __name__ == "__main__":
         if not path:
             print("Path is required for scan command")
         else:
-            cli.cmd(command, path=path)
+            if args.tree:
+                cli.cmd(command, path, tree=True)
+            else:
+                cli.cmd(command, path=path)
     else:
         print("Work going on..")
